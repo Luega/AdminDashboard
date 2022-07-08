@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css link -->
     <link rel="stylesheet" href="/public/style.css">
+    <!-- cdn for chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
     <title>Admin Dashboard</title>
 </head>
 <body class="bg-gray-200">
     <div class="flex">
         <!-- LEFT COL -->
-        <div class="bg-indigo-900 w-64 h-screen">
+        <div class="bg-indigo-900 w-64">
             <!-- TOP -->
             <div class="bg-indigo-800">
                 <div class="p-5 text-xl text-gray-200 uppercase font-bold ">Super Corp</div>
@@ -104,7 +107,7 @@
                 <div class="text-4xl text-gray-800 font-medium">Good Morning, super Inc.</div>
                 <div class="mt-4">These are the stats for today, have a good day</div>
             </div>
-            <!-- cards container -->
+            <!-- Sales cards container -->
             <div class="flex m-7 space-x-6">
                 <!-- card 1 -->
                 <div class="p-4 w-1/2 bg-white">
@@ -115,6 +118,7 @@
                     <div class="uppercase my-3 font-bold text-sm text-gray-400">Sales</div>
                     <span class="font-bold text-3xl">&#x24;25,647</span>
                     <span class="p-1 bg-green-500 text-white rounded-full text-sm font-bold align-text-top">&#43;58&#x25;</span>
+                    <canvas id="chart1"></canvas>
                 </div>
                 <!-- card 2 -->
                 <div class="p-4 w-1/2 bg-white">
@@ -122,12 +126,195 @@
                         <img src="/public/img/wallet.png" alt="#">
                     </div>
                     <div class="font-bold text-xl text-gray-700">Super plus</div>
-                    <div class="uppercase my-3 font-bold text-sm text-gray-400">Sales</div>
-                    <span class="font-bold text-3xl">&#x24;34,047</span>
+                    <div class="uppercase my-3 font-bold text-sm text-gray-400">New Clients</div>
+                    <span class="font-bold text-3xl">112</span>
                     <span class="p-1 bg-green-500 text-white rounded-full text-sm font-bold align-text-top">&#43;28&#x25;</span>
+                    <canvas id="chart2"></canvas>
+                </div>
+            </div>
+            <!-- Products cards container -->
+            <div class="flex m-7 space-x-6">
+                <!-- card 3 -->
+                <div class="p-4 w-1/2 bg-white">
+                    <div>
+                        <img src="/public/img/wallet.png" alt="#">
+                    </div>
+                    <div class="font-bold text-xl text-gray-700">Super plus</div>
+                    <div class="uppercase my-3 font-bold text-sm text-gray-400">Prducts</div>
+                    <canvas id="chart3"></canvas>
+                </div>
+                <!-- card 4 -->
+                <div class="p-4 w-1/2 bg-white">
+                    <div>
+                        <img src="/public/img/wallet.png" alt="#">
+                    </div>
+                    <div class="font-bold text-xl text-gray-700">Super plus</div>
+                    <div class="uppercase my-3 font-bold text-sm text-gray-400">Customer satisfaction</div>
+                    <canvas id="chart4"></canvas>
+                </div>
+            </div>
+            <!-- Employees cards container -->
+            <div class="flex m-7 space-x-6">
+                <!-- card 4 -->
+                <div class="p-4 w-1/3 bg-white">
+                    left
+                </div>
+                <!-- card 5 -->
+                <div class="p-4 w-2/3 bg-white">
+                    right
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+<!-- script for chart.js -->
+<script>
+    // create variables
+    const ctx = document.getElementById('chart1').getContext('2d');
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+    // create the chart
+    // chart1
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Sales',
+                data: [1, 2, 3, 4, 5, 6],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    // chart2
+    const myChart2 = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'New Clients',
+                data: [1, 5, 3, 8, 11, 5],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    // chart3
+    const myChart3 = new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+            labels: ['Prod1', 'Prod2', 'Prod3', 'Prod4', 'Prod5', 'Prod6'],
+            datasets: [{
+                label: 'Prducts sold',
+                data: [100, 65, 588, 68, 110, 50],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    // chart4
+    const myChart4 = new Chart(ctx4, {
+        type: 'radar',
+        data: {
+            labels: ['1Star', '2Stars', '3Stars', '4Stars', '5Stars'],
+            datasets: [{
+                label: 'Customer satisfaction',
+                data: [1, 5, 3, 8, 11],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
